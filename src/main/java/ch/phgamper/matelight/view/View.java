@@ -1,13 +1,11 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package view;
+package ch.phgamper.matelight.view;
 
-import controller.SnakeMover;
-import model.Constants;
-import model.Map;
-import model.Score;
-import model.Snake;
+
+import ch.phgamper.matelight.controller.SnakeMover;
+import ch.phgamper.matelight.model.Constants;
+import ch.phgamper.matelight.model.Map;
+import ch.phgamper.matelight.model.Score;
+import ch.phgamper.matelight.model.Snake;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +24,7 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             this.listener();
             this.build();
-        }
-        catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
     }
@@ -41,8 +38,8 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
         this.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         this.setLayout(new BorderLayout());
         this.score.setText(" Score: " + Score.getInstance().returnScore() + "");
-        this.add((Component)this.score, "South");
-        this.add((Component)this.board, "Center");
+        this.add(this.score, "South");
+        this.add(this.board, "Center");
         this.setVisible(true);
     }
 

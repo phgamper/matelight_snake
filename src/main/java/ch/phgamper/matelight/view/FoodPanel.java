@@ -1,10 +1,8 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package view;
+package ch.phgamper.matelight.view;
 
-import model.Constants;
-import model.Food;
+
+import ch.phgamper.matelight.model.Constants;
+import ch.phgamper.matelight.model.Food;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +10,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class FoodPanel
-extends JPanel
-implements Observer {
+        extends JPanel
+        implements Observer {
     private static final long serialVersionUID = 1;
 
     public FoodPanel() {
@@ -28,7 +26,7 @@ implements Observer {
         super.paint(g);
         int[] pos = Food.getInstance().getPosition();
         g.setColor(Color.RED);
-        g.fillArc(pos[0] * 30, pos[1] * 30, 30, 30, 0, 360);
+        g.fillArc(pos[0] * Constants.BLOCK_SIZE, pos[1] * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, 0, 360);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

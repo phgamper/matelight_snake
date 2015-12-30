@@ -1,12 +1,9 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package model;
+package ch.phgamper.matelight.model;
 
 import java.util.Observable;
 
 public class Map
-extends Observable {
+        extends Observable {
     private static Map map = new Map();
     private int[][] fields;
     private boolean gameOver = false;
@@ -68,12 +65,12 @@ extends Observable {
         this.notifyObservers();
     }
 
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
-    }
-
     public boolean isGameOver() {
         return this.gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 }
 

@@ -1,4 +1,4 @@
-package model;
+package ch.phgamper.matelight.model;
 
 import javax.swing.*;
 import javax.swing.border.Border;

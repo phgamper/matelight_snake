@@ -1,7 +1,4 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package model;
+package ch.phgamper.matelight.model;
 
 public class Score {
     private static Score score = new Score();

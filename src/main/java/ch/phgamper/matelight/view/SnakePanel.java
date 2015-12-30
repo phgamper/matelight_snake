@@ -1,10 +1,7 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package view;
+package ch.phgamper.matelight.view;
 
-import model.Constants;
-import model.Snake;
+import ch.phgamper.matelight.model.Constants;
+import ch.phgamper.matelight.model.Snake;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +9,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class SnakePanel
-extends JPanel
-implements Observer {
+        extends JPanel
+        implements Observer {
     private static final long serialVersionUID = 1;
     private int[][] lastPos = new int[][]{{0, 0}, {0, 0}};
 
@@ -50,14 +47,14 @@ implements Observer {
         }
         g.setColor(Color.BLACK);
         for (i = 0; i < 2; ++i) {
-            x = (int)Math.round((double)(pos[0][0] * Constants.BLOCK_SIZE) + 6.0 * (1.1 + (double)(i * 2)));
-            y = (int)Math.round((double)(pos[0][1] * Constants.BLOCK_SIZE) + 9.0);
+            x = (int) Math.round((double) (pos[0][0] * Constants.BLOCK_SIZE) + 6.0 * (1.1 + (double) (i * 2)));
+            y = (int) Math.round((double) (pos[0][1] * Constants.BLOCK_SIZE) + 9.0);
             int a = Math.round(4.0f);
             b = Math.round(5.0f);
             g.fillArc(x, y, a, b, 0, 360);
         }
-        int[] x2 = new int[]{(int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 10), (int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6), (int)Math.floor(pos[0][0] * 30), (int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6), (int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6)};
-        int[] y2 = new int[]{(int)Math.floor(pos[0][1] * Constants.BLOCK_SIZE + 24), (int)Math.floor(pos[0][1] * Constants.BLOCK_SIZE + 25), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * Constants.BLOCK_SIZE + Constants.BLOCK_SIZE) - 1};
+        int[] x2 = new int[]{(int) Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 10), (int) Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6), (int) Math.floor(pos[0][0] * 30), (int) Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6), (int) Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6)};
+        int[] y2 = new int[]{(int) Math.floor(pos[0][1] * Constants.BLOCK_SIZE + 24), (int) Math.floor(pos[0][1] * Constants.BLOCK_SIZE + 25), (int) Math.floor(pos[0][1] * 30 + 25), (int) Math.floor(pos[0][1] * 30 + 25), (int) Math.floor(pos[0][1] * Constants.BLOCK_SIZE + Constants.BLOCK_SIZE) - 1};
         g.setColor(Color.RED);
         g.drawPolyline(x2, y2, 5);
         this.lastPos = new int[pos.length][2];

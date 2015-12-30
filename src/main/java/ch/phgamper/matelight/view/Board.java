@@ -1,15 +1,13 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package view;
+package ch.phgamper.matelight.view;
 
-import model.Constants;
+
+import ch.phgamper.matelight.model.Constants;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Board
-extends JLayeredPane {
+        extends JLayeredPane {
     private static final long serialVersionUID = 7704761091317274700L;
 
     public Board() {

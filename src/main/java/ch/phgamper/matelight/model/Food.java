@@ -1,7 +1,4 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package model;
+package ch.phgamper.matelight.model;
 
 import java.util.Observable;
 import java.util.Random;

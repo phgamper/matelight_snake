@@ -1,15 +1,12 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package view;
+package ch.phgamper.matelight.view;
 
-import model.Constants;
+import ch.phgamper.matelight.model.Constants;
 
 import javax.swing.*;
 import java.net.URL;
 
 public class GameOver
-extends JWindow {
+        extends JWindow {
     private static final long serialVersionUID = -4665266911337393569L;
     private URL imageUrl = ClassLoader.getSystemResource("images/game-over.jpg");
 

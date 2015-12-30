@@ -1,11 +1,8 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package controller;
+package ch.phgamper.matelight.controller;
 
-import model.Constants;
-import model.Map;
-import model.Snake;
+import ch.phgamper.matelight.model.Constants;
+import ch.phgamper.matelight.model.Map;
+import ch.phgamper.matelight.model.Snake;
 
 import java.awt.event.KeyEvent;
 

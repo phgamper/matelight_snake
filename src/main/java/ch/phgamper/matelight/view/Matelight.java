@@ -1,8 +1,8 @@
-package view;
+package ch.phgamper.matelight.view;
 
-import model.Constants;
-import model.Food;
-import model.Snake;
+import ch.phgamper.matelight.model.Constants;
+import ch.phgamper.matelight.model.Food;
+import ch.phgamper.matelight.model.Snake;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -12,11 +12,11 @@ import java.net.SocketException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Matelight implements Observer{
+public class Matelight implements Observer {
 
     DatagramSocket socket;
 
-    public Matelight(){
+    public Matelight() {
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {
@@ -31,10 +31,10 @@ public class Matelight implements Observer{
             int[] food = Food.getInstance().getPosition();
 
             byte[] buf = new byte[1920];
-            buf[(food[1] * Constants.xLen + food[0]) * 3] = (byte)255;
+            buf[(food[1] * Constants.xLen + food[0]) * 3] = (byte) 255;
 
-            for(int i = 0; i < pos.length; i++){
-                buf[(pos[i][1] * Constants.xLen + pos[i][0]) * 3 + 1] = (byte)255;
+            for (int i = 0; i < pos.length; i++) {
+                buf[((((pos[i][1] * Constants.xLen) + pos[i][0]) * 3) + 1)] = (byte) 255;
             }
             DatagramPacket packet = new DatagramPacket(buf, buf.length, InetAddress.getByName("151.217.38.29"), 1337);
             socket.send(packet);

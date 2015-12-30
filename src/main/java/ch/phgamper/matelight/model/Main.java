@@ -1,13 +1,10 @@
-/*
- * Decompiled with CFR 0_110.
- */
-package model;
+package ch.phgamper.matelight.model;
 
-import controller.SnakeMover;
-import view.FoodPanel;
-import view.Matelight;
-import view.SnakePanel;
-import view.View;
+import ch.phgamper.matelight.controller.SnakeMover;
+import ch.phgamper.matelight.view.FoodPanel;
+import ch.phgamper.matelight.view.Matelight;
+import ch.phgamper.matelight.view.SnakePanel;
+import ch.phgamper.matelight.view.View;
 
 public class Main {
     public static void main(String[] args) {
