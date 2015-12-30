@@ -4,7 +4,11 @@ public class Score {
     private int points = 0;
 
     public void inc() {
-        this.points += Constants.ADD_POINTS;
+        points += Constants.ADD_POINTS;
+    }
+
+    public void reset(){
+        points = 0;
     }
 
     public int getPoints() {

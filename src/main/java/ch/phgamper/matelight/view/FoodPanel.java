@@ -16,9 +16,11 @@ import java.util.Observer;
 public class FoodPanel extends JPanel implements Observer {
     private static final long serialVersionUID = 1;
     private Food food;
+    private Point last;
 
     public FoodPanel(Food food) {
         this.food = food;
+        this.last = food.getFood();
         this.setSize(new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         this.setBackground(new Color(0, 0, 0, 0));
         this.setFocusable(false);
@@ -29,9 +31,15 @@ public class FoodPanel extends JPanel implements Observer {
     public void paint(Graphics g) {
         int block = Constants.BLOCK_SIZE;
         super.paint(g);
-        Point p = food.getFood();
+
+        // clear food
+        g.setColor(Color.BLACK);
+        g.fillArc(last.X * block, last.Y * block, block, block, 0, 360);
+
+        // repaint food
+        last = food.getFood();
         g.setColor(Color.RED);
-        g.fillArc(p.X * block, p.Y * block, block, block, 0, 360);
+        g.fillArc(last.X * block, last.Y * block, block, block, 0, 360);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

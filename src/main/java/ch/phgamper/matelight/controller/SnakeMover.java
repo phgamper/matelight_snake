@@ -7,12 +7,14 @@ import java.awt.event.KeyEvent;
 
 public class SnakeMover implements Runnable {
 
+    private Thread thread;
     private Snake snake;
     private KeyEvent event = null;
 
     public SnakeMover(Snake snake) {
         this.snake = snake;
-        new Thread(this).start();
+        thread = new Thread(this);
+        thread.start();
     }
 
     @Override
@@ -23,25 +25,20 @@ public class SnakeMover implements Runnable {
                 Thread.sleep(Constants.SPEED);
                 if (event == null) continue;
                 switch (event.getKeyCode()) {
-                    case 37: {
+                    case KeyEvent.VK_LEFT:
                         this.snake.moveLeft();
                         break;
-                    }
-                    case 38: {
+                    case KeyEvent.VK_UP:
                         this.snake.moveUp();
                         break;
-                    }
-                    case 39: {
+                    case KeyEvent.VK_RIGHT:
                         this.snake.moveRight();
                         break;
-                    }
-                    case 40: {
+                    case KeyEvent.VK_DOWN:
                         this.snake.moveDown();
                         break;
-                    }
-                    case 32: {
+                    default:
                         break;
-                    }
                 }
             }
             catch (InterruptedException e) {
@@ -51,35 +48,34 @@ public class SnakeMover implements Runnable {
         snake.update();
     }
 
-    public void setEvent(KeyEvent event) {
-        if (this.event != null) {
-            switch (event.getKeyCode()) {
-                case 37: {
-                    if (this.event.getKeyCode() == 39) return;
-                    this.event = event;
+    public void setEvent(KeyEvent e) {
+        if (event != null) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
+                    event = event.getKeyCode() == KeyEvent.VK_RIGHT ? event :  e;
                     break;
-                }
-                case 38: {
-                    if (this.event.getKeyCode() == 40) return;
-                    this.event = event;
+                case KeyEvent.VK_UP:
+                    event = event.getKeyCode() == KeyEvent.VK_DOWN ? event :  e;
                     break;
-                }
-                case 39: {
-                    if (this.event.getKeyCode() == 37) return;
-                    this.event = event;
+                case KeyEvent.VK_RIGHT:
+                    event = event.getKeyCode() == KeyEvent.VK_LEFT ? event :  e;
                     break;
-                }
-                case 40: {
-                    if (this.event.getKeyCode() == 38) return;
-                    this.event = event;
+                case KeyEvent.VK_DOWN:
+                    event = event.getKeyCode() == KeyEvent.VK_UP ? event :  e;
                     break;
-                }
+                case KeyEvent.VK_SPACE:
+                    event = null;
+                    snake.newGame();
+                    snake.update();
+                    thread = new Thread(this);
+                    thread.start();
+                    break;
                 default: {
                     break;
                 }
             }
         } else {
-            this.event = event;
+            event = e;
         }
     }
 }

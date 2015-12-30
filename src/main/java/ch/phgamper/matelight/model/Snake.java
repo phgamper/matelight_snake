@@ -13,10 +13,20 @@ public class Snake extends Observable {
     public Snake(Food food, Score score) {
         this.food = food;
         this.score = score;
+        newGame();
+    }
+
+    /**
+     * Start a new game
+     */
+    public void newGame() {
+        gameOver = false;
+        snake.clear();
         snake.add(new Point(2, 0));
         snake.add(new Point(1, 0));
         snake.add(new Point(0, 0));
-        this.food.next(this);
+        food.next(this);
+        score.reset();
     }
 
     /**
@@ -148,5 +158,6 @@ public class Snake extends Observable {
     public Score getScore(){
         return score;
     }
+
 }
 
