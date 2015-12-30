@@ -17,7 +17,7 @@ public class Snake extends Observable {
     }
 
     /**
-     * Start a new game
+     * Starts a new game
      */
     public void newGame() {
         gameOver = false;
@@ -32,7 +32,7 @@ public class Snake extends Observable {
     }
 
     /**
-     * Move snake down
+     * Moves snake down
      */
     public void moveDown() {
         Point head = snake.peek();
@@ -40,7 +40,7 @@ public class Snake extends Observable {
     }
 
     /**
-     * Move snake up
+     * Moves snake up
      */
     public void moveUp() {
         Point head = snake.peek();
@@ -48,7 +48,7 @@ public class Snake extends Observable {
     }
 
     /**
-     * Move snake to the right
+     * Moves snake to the right
      */
     public void moveRight() {
         Point head = snake.peek();
@@ -56,7 +56,7 @@ public class Snake extends Observable {
     }
 
     /**
-     * Move snake to the left
+     * Moves snake to the left
      */
     public void moveLeft() {
         Point head = snake.peek();
@@ -64,7 +64,7 @@ public class Snake extends Observable {
     }
 
     /**
-     * Move the snake towards the given direction
+     * Moves the snake towards the given direction
      *
      * @param next new position of the snake's head
      */

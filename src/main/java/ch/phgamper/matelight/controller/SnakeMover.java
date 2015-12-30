@@ -17,6 +17,9 @@ public class SnakeMover implements Runnable {
         thread.start();
     }
 
+    /**
+     * Starts the Game
+     */
     @Override
     public void run() {
         while (!snake.isGameOver()) {
@@ -47,6 +50,11 @@ public class SnakeMover implements Runnable {
         }
     }
 
+    /**
+     * Handles key events
+     *
+     * @param e key pressed
+     */
     public void setEvent(KeyEvent e) {
         if (event != null) {
             switch (e.getKeyCode()) {

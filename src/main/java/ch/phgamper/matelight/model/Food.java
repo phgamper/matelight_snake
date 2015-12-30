@@ -9,6 +9,11 @@ public class Food extends Observable {
 
     private Point food;
 
+    /**
+     * Places the a new food
+     *
+     * @param snake to prevent placing the food on it
+     */
     public void next(Snake snake) {
         int x = rand.nextInt(Constants.xLen);
         int y = rand.nextInt(Constants.yLen);
@@ -21,10 +26,19 @@ public class Food extends Observable {
         this.notifyObservers();
     }
 
+    /**
+     *
+     * @return the coordinates of the food
+     */
     public Point getFood(){
         return food;
     }
 
+    /**
+     *
+     * @param head of the snake
+     * @return whether the snake got some food
+     */
     public boolean isFood(Point head){
         return food.equals(head);
     }

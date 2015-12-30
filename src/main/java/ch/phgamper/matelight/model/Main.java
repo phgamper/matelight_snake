@@ -18,7 +18,6 @@ public class Main {
     }
 
     public Main(String host, int port) {
-        // Start Game
         Matelight mate = new Matelight(host, port);
         Food food = new Food();
         Score score = new Score();

@@ -26,6 +26,12 @@ public class Matelight implements Observer {
         }
     }
 
+    /**
+     * Sends the next frame to the matelight screen
+     *
+     * @param o changed model
+     * @param arg argument passed by model
+     */
     @Override
     public void update(Observable o, Object arg) {
         try {
