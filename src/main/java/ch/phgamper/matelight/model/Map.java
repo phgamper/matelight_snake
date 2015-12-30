@@ -2,8 +2,7 @@ package ch.phgamper.matelight.model;
 
 import java.util.Observable;
 
-public class Map
-        extends Observable {
+public class Map extends Observable {
     private static Map map = new Map();
     private int[][] fields;
     private boolean gameOver = false;
