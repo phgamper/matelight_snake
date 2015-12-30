@@ -8,9 +8,7 @@ import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SnakePanel
-        extends JPanel
-        implements Observer {
+public class SnakePanel extends JPanel implements Observer {
     private static final long serialVersionUID = 1;
     private int[][] lastPos = new int[][]{{0, 0}, {0, 0}};
 

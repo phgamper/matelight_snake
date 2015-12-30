@@ -45,10 +45,7 @@ public class Map extends Observable {
     }
 
     public boolean isWall(int[] snakehead) {
-        if (snakehead[0] >= Constants.xLen || snakehead[1] >= Constants.yLen || snakehead[0] < 0 || snakehead[1] < 0) {
-            return true;
-        }
-        return false;
+        return snakehead[0] >= Constants.xLen || snakehead[1] >= Constants.yLen || snakehead[0] < 0 || snakehead[1] < 0;
     }
 
     public boolean isFood(int[] snakehead) {
