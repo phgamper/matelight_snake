@@ -19,7 +19,7 @@ public class FoodPanel extends JPanel implements Observer {
 
     public FoodPanel(Food food) {
         this.food = food;
-        this.setSize(new Dimension(Constants.BOARD_WIDTH, Constants.FRAME_HEIGHT));
+        this.setSize(new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
         this.setBackground(new Color(0, 0, 0, 0));
         this.setFocusable(false);
         this.setOpaque(true);
@@ -27,10 +27,11 @@ public class FoodPanel extends JPanel implements Observer {
 
     @Override
     public void paint(Graphics g) {
+        int block = Constants.BLOCK_SIZE;
         super.paint(g);
         Point p = food.getFood();
         g.setColor(Color.RED);
-        g.fillArc(p.X * Constants.BLOCK_SIZE, p.Y * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, 0, 360);
+        g.fillArc(p.X * block, p.Y * block, block, block, 0, 360);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

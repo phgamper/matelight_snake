@@ -21,21 +21,21 @@ public class Matelight implements Observer {
     public void update(Observable o, Object arg) {
             /*
         try {
-            int[][] pos = Snake.getInstance().getPositions();
-            int[] food = Food.getInstance().getPosition();
-
             byte[] buf = new byte[1920];
-            buf[(food[1] * Constants.xLen + food[0]) * 3] = (byte) 255;
-
-            for (int i = 0; i < pos.length; i++) {
-                buf[((((pos[i][1] * Constants.xLen) + pos[i][0]) * 3) + 1)] = (byte) 255;
+            if(o instanceof Snake){
+                Snake snake = (Snake) o;
+                for(Point p :snake.getSnake()){
+                    buf[((((p.Y * Constants.xLen) + p.X) * 3) + 1)] = (byte) 255;
+                }
+                Point food = snake.getFood().getFood();
+                buf[(food.Y * Constants.xLen + food.X) * 3] = (byte) 255;
             }
+
             DatagramPacket packet = new DatagramPacket(buf, buf.length, InetAddress.getByName("151.217.38.29"), 1337);
             socket.send(packet);
         } catch (IOException e) {
             e.printStackTrace();
         }
             */
-
     }
 }

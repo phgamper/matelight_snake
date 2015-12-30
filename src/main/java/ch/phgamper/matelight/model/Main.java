@@ -27,13 +27,12 @@ public class Main {
         FoodPanel foodPanel = new FoodPanel(food);
 
         food.addObserver(foodPanel);
-
         snake.addObserver(snakePanel);
         snake.addObserver(view);
         snake.addObserver(mate);
 
-        view.addJPanelToBoard(foodPanel);
-        view.addJPanelToBoard(snakePanel);
+        view.addToBoard(foodPanel);
+        view.addToBoard(snakePanel);
     }
 }
 
