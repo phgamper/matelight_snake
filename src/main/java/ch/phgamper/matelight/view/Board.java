@@ -24,9 +24,5 @@ public class Board
     public void addJPanel(JPanel jpanel) {
         this.add(jpanel);
     }
-
-    public void gameOver() {
-        new GameOver();
-    }
 }
 

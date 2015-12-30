@@ -3,7 +3,6 @@ package ch.phgamper.matelight.view;
 
 import ch.phgamper.matelight.controller.SnakeMover;
 import ch.phgamper.matelight.model.Constants;
-import ch.phgamper.matelight.model.Map;
 import ch.phgamper.matelight.model.Score;
 import ch.phgamper.matelight.model.Snake;
 
@@ -49,9 +48,6 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
 
     @Override
     public void update(Observable o, Object obj) {
-        if (o instanceof Map && Map.getInstance().isGameOver()) {
-            this.board.gameOver();
-        }
         if (o instanceof Snake) {
             this.score.setText(" Score: " + Score.getInstance().returnScore() + "");
         }
