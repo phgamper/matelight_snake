@@ -6,8 +6,7 @@ import ch.phgamper.matelight.model.Constants;
 import javax.swing.*;
 import java.awt.*;
 
-public class Board
-        extends JLayeredPane {
+public class Board extends JLayeredPane {
     private static final long serialVersionUID = 7704761091317274700L;
 
     public Board() {

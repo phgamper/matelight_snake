@@ -1,36 +1,23 @@
 package ch.phgamper.matelight.controller;
 
 import ch.phgamper.matelight.model.Constants;
-import ch.phgamper.matelight.model.Map;
 import ch.phgamper.matelight.model.Snake;
 
 import java.awt.event.KeyEvent;
 
-public class SnakeMover
-implements Runnable {
-    private static SnakeMover mover = new SnakeMover();
-    private Thread runtime;
+public class SnakeMover implements Runnable {
+
     private Snake snake;
     private KeyEvent event = null;
 
-    private SnakeMover() {
-        this.runtime = new Thread(this);
-        this.runtime.start();
-    }
-
-    public static SnakeMover getInstance(KeyEvent e) {
-        mover.setEvent(e);
-        return mover;
-    }
-
-    public static SnakeMover getInstance(Snake snake) {
-        mover.setSnake(snake);
-        return mover;
+    public SnakeMover(Snake snake) {
+        this.snake = snake;
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-        while (!Map.getInstance().isGameOver()) {
+        while (!snake.isGameOver()) {
             try {
                 KeyEvent event = this.event;
                 Thread.sleep(Constants.SPEED);
@@ -61,47 +48,39 @@ implements Runnable {
                 e.printStackTrace();
             }
         }
-        Map.getInstance().update();
+        snake.update();
     }
 
-    /*
-     * Enabled force condition propagation
-     * Lifted jumps to return sites
-     */
     public void setEvent(KeyEvent event) {
         if (this.event != null) {
             switch (event.getKeyCode()) {
                 case 37: {
                     if (this.event.getKeyCode() == 39) return;
                     this.event = event;
-                    return;
+                    break;
                 }
                 case 38: {
                     if (this.event.getKeyCode() == 40) return;
                     this.event = event;
-                    return;
+                    break;
                 }
                 case 39: {
                     if (this.event.getKeyCode() == 37) return;
                     this.event = event;
-                    return;
+                    break;
                 }
                 case 40: {
                     if (this.event.getKeyCode() == 38) return;
                     this.event = event;
-                    return;
+                    break;
                 }
                 default: {
-                    return;
+                    break;
                 }
             }
         } else {
             this.event = event;
         }
-    }
-
-    public void setSnake(Snake snake) {
-        this.snake = snake;
     }
 }
 

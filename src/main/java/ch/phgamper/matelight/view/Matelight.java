@@ -1,14 +1,6 @@
 package ch.phgamper.matelight.view;
 
-import ch.phgamper.matelight.model.Constants;
-import ch.phgamper.matelight.model.Food;
-import ch.phgamper.matelight.model.Map;
-import ch.phgamper.matelight.model.Snake;
-
-import java.io.IOException;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,11 +19,9 @@ public class Matelight implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+            /*
         try {
-            if(o instanceof Map){
-                System.out.println("Game Over");
-            }
-            int[][] pos = Snake.getInstance().getSnakepositions();
+            int[][] pos = Snake.getInstance().getPositions();
             int[] food = Food.getInstance().getPosition();
 
             byte[] buf = new byte[1920];
@@ -45,6 +35,7 @@ public class Matelight implements Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+            */
 
     }
 }

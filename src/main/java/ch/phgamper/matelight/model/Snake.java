@@ -1,143 +1,74 @@
 package ch.phgamper.matelight.model;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Observable;
 
-public class Snake
-extends Observable {
-    private static Snake snake = new Snake();
-    private int[][] snakepositions = new int[][]{{1, 0}, {0, 0}};
+public class Snake extends Observable {
+    private LinkedList<Point> snake = new LinkedList<>();
+    private Food food;
+    private boolean gameOver = false;
 
-    private Snake() {
-        Map.getInstance().addSnake(this.snakepositions);
-    }
-
-    public static Snake getInstance() {
-        return snake;
+    public Snake(Food food) {
+        this.food = food;
+        snake.add(new Point(2, 0));
+        snake.add(new Point(1, 0));
+        snake.add(new Point(0, 0));
+        this.food.next(this);
     }
 
     public void moveDown() {
-        int[] snakehead = new int[]{this.snakepositions[0][0], this.snakepositions[0][1] + 1};
-        if (!Map.getInstance().isWall(snakehead)) {
-            Map.getInstance().removeSnakeTail(this.snakepositions[this.snakepositions.length - 1]);
-            if (!Map.getInstance().isSnake(snakehead)) {
-                int[][] temppositions;
-                if (Map.getInstance().isFood(snakehead)) {
-                    Map.getInstance().eatFood(snakehead);
-                    temppositions = new int[this.snakepositions.length + 1][2];
-                    Score.getInstance().addPoints();
-                } else {
-                    temppositions = new int[this.snakepositions.length][2];
-                }
-                for (int i = 0; i < temppositions.length - 1; ++i) {
-                    temppositions[i + 1][0] = this.snakepositions[i][0];
-                    temppositions[i + 1][1] = this.snakepositions[i][1];
-                }
-                temppositions[0][0] = snakehead[0];
-                temppositions[0][1] = snakehead[1];
-                Map.getInstance().moveSnakeHead(snakehead);
-                this.newSnakePositions(temppositions);
-            } else {
-                Map.getInstance().setGameOver(true);
+        Point head = snake.peek();
+        if (!isWall(head) && !isSnake(head)) {
+            snake.addFirst(new Point(head.X, head.Y + 1));
+            if (!food.isFood(head)) {
+                snake.removeLast();
             }
         } else {
-            Map.getInstance().setGameOver(true);
+            gameOver = true;
         }
+        update();
     }
 
     public void moveUp() {
-        int[] snakehead = new int[]{this.snakepositions[0][0], this.snakepositions[0][1] - 1};
-        if (!Map.getInstance().isWall(snakehead)) {
-            Map.getInstance().removeSnakeTail(this.snakepositions[this.snakepositions.length - 1]);
-            if (!Map.getInstance().isSnake(snakehead)) {
-                int[][] temppositions;
-                if (Map.getInstance().isFood(snakehead)) {
-                    Map.getInstance().eatFood(snakehead);
-                    temppositions = new int[this.snakepositions.length + 1][2];
-                    Score.getInstance().addPoints();
-                } else {
-                    temppositions = new int[this.snakepositions.length][2];
-                }
-                for (int i = 0; i < temppositions.length - 1; ++i) {
-                    temppositions[i + 1][0] = this.snakepositions[i][0];
-                    temppositions[i + 1][1] = this.snakepositions[i][1];
-                }
-                temppositions[0][0] = snakehead[0];
-                temppositions[0][1] = snakehead[1];
-                Map.getInstance().moveSnakeHead(snakehead);
-                this.newSnakePositions(temppositions);
-            } else {
-                Map.getInstance().setGameOver(true);
+        Point head = snake.peek();
+        if (!isWall(head) && !isSnake(head)) {
+            snake.addFirst(new Point(head.X, head.Y - 1));
+            if (!food.isFood(head)) {
+                snake.removeLast();
             }
         } else {
-            Map.getInstance().setGameOver(true);
+            gameOver = true;
         }
+        update();
     }
 
     public void moveRight() {
-        int[] snakehead = new int[]{this.snakepositions[0][0] + 1, this.snakepositions[0][1]};
-        if (!Map.getInstance().isWall(snakehead)) {
-            Map.getInstance().removeSnakeTail(this.snakepositions[this.snakepositions.length - 1]);
-            if (!Map.getInstance().isSnake(snakehead)) {
-                int[][] temppositions;
-                if (Map.getInstance().isFood(snakehead)) {
-                    Map.getInstance().eatFood(snakehead);
-                    temppositions = new int[this.snakepositions.length + 1][2];
-                    Score.getInstance().addPoints();
-                } else {
-                    temppositions = new int[this.snakepositions.length][2];
-                }
-                for (int i = 0; i < temppositions.length - 1; ++i) {
-                    temppositions[i + 1][0] = this.snakepositions[i][0];
-                    temppositions[i + 1][1] = this.snakepositions[i][1];
-                }
-                temppositions[0][0] = snakehead[0];
-                temppositions[0][1] = snakehead[1];
-                Map.getInstance().moveSnakeHead(snakehead);
-                this.newSnakePositions(temppositions);
+        Point head = snake.peek();
+        if (!isWall(head) && !isSnake(head)) {
+            snake.addFirst(new Point(head.X + 1, head.Y));
+            if (!food.isFood(head)) {
+                snake.removeLast();
             } else {
-                Map.getInstance().setGameOver(true);
+                food.next(this);
             }
         } else {
-            Map.getInstance().setGameOver(true);
+            gameOver = true;
         }
+        this.update();
     }
 
     public void moveLeft() {
-        int[] snakehead = new int[]{this.snakepositions[0][0] - 1, this.snakepositions[0][1]};
-        if (!Map.getInstance().isWall(snakehead)) {
-            Map.getInstance().removeSnakeTail(this.snakepositions[this.snakepositions.length - 1]);
-            if (!Map.getInstance().isSnake(snakehead)) {
-                int[][] temppositions;
-                if (Map.getInstance().isFood(snakehead)) {
-                    Map.getInstance().eatFood(snakehead);
-                    temppositions = new int[this.snakepositions.length + 1][2];
-                    Score.getInstance().addPoints();
-                } else {
-                    temppositions = new int[this.snakepositions.length][2];
-                }
-                for (int i = 0; i < temppositions.length - 1; ++i) {
-                    temppositions[i + 1][0] = this.snakepositions[i][0];
-                    temppositions[i + 1][1] = this.snakepositions[i][1];
-                }
-                temppositions[0][0] = snakehead[0];
-                temppositions[0][1] = snakehead[1];
-                Map.getInstance().moveSnakeHead(snakehead);
-                this.newSnakePositions(temppositions);
-            } else {
-                Map.getInstance().setGameOver(true);
+        Point head = snake.peek();
+        if (!isWall(head) && !isSnake(head)) {
+            snake.addFirst(new Point(head.X - 1, head.Y));
+            if (!food.isFood(head)) {
+                snake.removeLast();
             }
         } else {
-            Map.getInstance().setGameOver(true);
+            gameOver = true;
         }
-    }
-
-    private void newSnakePositions(int[][] temppositions) {
-        this.snakepositions = new int[temppositions.length][2];
-        for (int i = 0; i < temppositions.length; ++i) {
-            this.snakepositions[i][0] = temppositions[i][0];
-            this.snakepositions[i][1] = temppositions[i][1];
-        }
-        this.update();
+        update();
     }
 
     public void update() {
@@ -145,12 +76,34 @@ extends Observable {
         this.notifyObservers();
     }
 
-    public int[][] getSnakepositions() {
-        return this.snakepositions;
+    public boolean isSnake(Point head) {
+        Iterator<Point> it = snake.iterator();
+        // Skip first
+        if(it.hasNext()) {
+            it.next();
+        }
+        while (it.hasNext()) {
+            if (head.equals(it.next())) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void setSnakepositions(int[][] snakepositions) {
-        this.snakepositions = snakepositions;
+    public boolean isSnake(int x, int y) {
+        return isSnake(new Point(x, y));
+    }
+
+    public boolean isWall(Point head) {
+        return head.X < 0 || head.Y < 0 || head.X >= Constants.xLen || head.Y >= Constants.yLen;
+    }
+
+    public LinkedList<Point> getSnake() {
+        return snake;
+    }
+
+    public boolean isGameOver() {
+        return this.gameOver;
     }
 }
 

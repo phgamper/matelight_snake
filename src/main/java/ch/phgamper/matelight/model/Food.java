@@ -3,35 +3,30 @@ package ch.phgamper.matelight.model;
 import java.util.Observable;
 import java.util.Random;
 
-public class Food
-extends Observable {
-    private static Food food = new Food();
+public class Food extends Observable {
+
     private Random rand = new Random();
-    private int[] position = new int[2];
 
-    private Food() {
-        this.nextFoodPosition();
-        Map.getInstance().addFood(this.position);
-    }
+    private Point food;
 
-    public static Food getInstance() {
-        return food;
-    }
-
-    public void nextFoodPosition() {
-        this.position[0] = this.rand.nextInt(Constants.xLen);
-        this.position[1] = this.rand.nextInt(Constants.yLen);
-        while (Map.getInstance().isSnake(this.position)) {
-            this.position[0] = this.rand.nextInt(Constants.xLen);
-            this.position[1] = this.rand.nextInt(Constants.yLen);
+    public void next(Snake snake) {
+        int x = rand.nextInt(Constants.xLen);
+        int y = rand.nextInt(Constants.yLen);
+        while (snake.isSnake(x, y)) {
+            x = rand.nextInt(Constants.xLen);
+            y = rand.nextInt(Constants.yLen);
         }
-        Map.getInstance().addFood(this.position);
+        food = new Point(x, y);
         this.setChanged();
         this.notifyObservers();
     }
 
-    public int[] getPosition() {
-        return this.position;
+    public Point getFood(){
+        return food;
+    }
+
+    public boolean isFood(Point head){
+        return food.equals(head);
     }
 }
 

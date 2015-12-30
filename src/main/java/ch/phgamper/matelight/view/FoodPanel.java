@@ -3,18 +3,22 @@ package ch.phgamper.matelight.view;
 
 import ch.phgamper.matelight.model.Constants;
 import ch.phgamper.matelight.model.Food;
+import ch.phgamper.matelight.model.Point;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
-public class FoodPanel
-        extends JPanel
-        implements Observer {
+public class FoodPanel extends JPanel implements Observer {
     private static final long serialVersionUID = 1;
+    private Food food;
 
-    public FoodPanel() {
+    public FoodPanel(Food food) {
+        this.food = food;
         this.setSize(new Dimension(Constants.BOARD_WIDTH, Constants.FRAME_HEIGHT));
         this.setBackground(new Color(0, 0, 0, 0));
         this.setFocusable(false);
@@ -24,9 +28,9 @@ public class FoodPanel
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        int[] pos = Food.getInstance().getPosition();
+        Point p = food.getFood();
         g.setColor(Color.RED);
-        g.fillArc(pos[0] * Constants.BLOCK_SIZE, pos[1] * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, 0, 360);
+        g.fillArc(p.X * Constants.BLOCK_SIZE, p.Y * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, 0, 360);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }

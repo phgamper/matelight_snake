@@ -4,7 +4,6 @@ package ch.phgamper.matelight.view;
 import ch.phgamper.matelight.controller.SnakeMover;
 import ch.phgamper.matelight.model.Constants;
 import ch.phgamper.matelight.model.Score;
-import ch.phgamper.matelight.model.Snake;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +16,11 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
     private Board board = new Board();
     private JLabel score = new JLabel();
 
-    public View() {
+    private SnakeMover mover;
+
+    public View(SnakeMover mover) {
         super("Snake");
+        this.mover = mover;
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             this.listener();
@@ -48,9 +50,11 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
 
     @Override
     public void update(Observable o, Object obj) {
+        /*
         if (o instanceof Snake) {
             this.score.setText(" Score: " + Score.getInstance().returnScore() + "");
         }
+        */
     }
 
     @Override
@@ -88,7 +92,7 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
 
     @Override
     public void keyPressed(KeyEvent e) {
-        SnakeMover.getInstance(e);
+        mover.setEvent(e);
     }
 
     @Override
