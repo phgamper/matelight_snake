@@ -33,31 +33,31 @@ implements Observer {
         super.paint(g);
         g.setColor(Constants.BACKGROUND_COLOR);
         for (int[] values : this.lastPos) {
-            g.fillRect(values[0] * 30, values[1] * 30, 30, 30);
+            g.fillRect(values[0] * Constants.BLOCK_SIZE, values[1] * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE);
         }
         int[][] pos = Snake.getInstance().getSnakepositions();
         g.setColor(Color.GREEN);
         for (int[] values2 : pos) {
-            g.fillArc(values2[0] * 30, values2[1] * 30, 30, 30, 0, 360);
+            g.fillArc(values2[0] * Constants.BLOCK_SIZE, values2[1] * Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, Constants.BLOCK_SIZE, 0, 360);
         }
         g.setColor(Color.WHITE);
         for (i = 0; i < 2; ++i) {
-            x = Math.round(pos[0][0] * 30 + 6 * (1 + i * 2));
-            y = Math.round(pos[0][1] * 30 + 6);
+            x = Math.round(pos[0][0] * Constants.BLOCK_SIZE + 6 * (1 + i * 2));
+            y = Math.round(pos[0][1] * Constants.BLOCK_SIZE + 6);
             int a = Math.round(6.0f);
             b = Math.round(7.0f);
             g.fillArc(x, y, a, b, 0, 360);
         }
         g.setColor(Color.BLACK);
         for (i = 0; i < 2; ++i) {
-            x = (int)Math.round((double)(pos[0][0] * 30) + 6.0 * (1.1 + (double)(i * 2)));
-            y = (int)Math.round((double)(pos[0][1] * 30) + 9.0);
+            x = (int)Math.round((double)(pos[0][0] * Constants.BLOCK_SIZE) + 6.0 * (1.1 + (double)(i * 2)));
+            y = (int)Math.round((double)(pos[0][1] * Constants.BLOCK_SIZE) + 9.0);
             int a = Math.round(4.0f);
             b = Math.round(5.0f);
             g.fillArc(x, y, a, b, 0, 360);
         }
-        int[] x2 = new int[]{(int)Math.floor(pos[0][0] * 30 + 10), (int)Math.floor(pos[0][0] * 30 + 6), (int)Math.floor(pos[0][0] * 30), (int)Math.floor(pos[0][0] * 30 + 6), (int)Math.floor(pos[0][0] * 30 + 6)};
-        int[] y2 = new int[]{(int)Math.floor(pos[0][1] * 30 + 24), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * 30 + 30) - 1};
+        int[] x2 = new int[]{(int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 10), (int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6), (int)Math.floor(pos[0][0] * 30), (int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6), (int)Math.floor(pos[0][0] * Constants.BLOCK_SIZE + 6)};
+        int[] y2 = new int[]{(int)Math.floor(pos[0][1] * Constants.BLOCK_SIZE + 24), (int)Math.floor(pos[0][1] * Constants.BLOCK_SIZE + 25), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * 30 + 25), (int)Math.floor(pos[0][1] * Constants.BLOCK_SIZE + Constants.BLOCK_SIZE) - 1};
         g.setColor(Color.RED);
         g.drawPolyline(x2, y2, 5);
         this.lastPos = new int[pos.length][2];

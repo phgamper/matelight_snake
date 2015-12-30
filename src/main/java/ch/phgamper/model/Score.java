@@ -15,7 +15,7 @@ public class Score {
     }
 
     public void addPoints() {
-        this.points += 50;
+        this.points += Constants.ADD_POINTS;
     }
 
     public int returnScore() {
