@@ -12,6 +12,7 @@ public class Main {
     private View view;
     private Snake snake;
     private Food food = new Food();
+    private Score score = new Score();
     private SnakeMover mover;
 
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class Main {
     }
 
     public Main() {
-        snake = new Snake(food);
+        snake = new Snake(food, score);
         mover = new SnakeMover(snake);
         view = new View(mover);
 

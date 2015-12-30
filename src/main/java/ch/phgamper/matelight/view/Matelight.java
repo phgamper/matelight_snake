@@ -1,6 +1,13 @@
 package ch.phgamper.matelight.view;
 
+import ch.phgamper.matelight.model.Constants;
+import ch.phgamper.matelight.model.Point;
+import ch.phgamper.matelight.model.Snake;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,7 +26,6 @@ public class Matelight implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-            /*
         try {
             byte[] buf = new byte[1920];
             if(o instanceof Snake){
@@ -36,6 +42,5 @@ public class Matelight implements Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-            */
     }
 }

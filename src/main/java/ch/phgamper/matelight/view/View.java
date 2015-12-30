@@ -3,7 +3,7 @@ package ch.phgamper.matelight.view;
 
 import ch.phgamper.matelight.controller.SnakeMover;
 import ch.phgamper.matelight.model.Constants;
-import ch.phgamper.matelight.model.Score;
+import ch.phgamper.matelight.model.Snake;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +41,7 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
         setLayout(new BorderLayout());
         setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
         score.setSize(new Dimension(Constants.BAR_WIDTH, Constants.BAR_HEIGHT));
-        score.setText(" Score: " + Score.getInstance().returnScore() + "");
+        score.setText(" Score: 0 ");
         add(board, "Center");
         add(score, "North");
         setVisible(true);
@@ -53,11 +53,9 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
 
     @Override
     public void update(Observable o, Object obj) {
-        /*
         if (o instanceof Snake) {
-            this.score.setText(" Score: " + Score.getInstance().returnScore() + "");
+            this.score.setText(" Score: " + ((Snake) o).getScore().getPoints());
         }
-        */
     }
 
     @Override

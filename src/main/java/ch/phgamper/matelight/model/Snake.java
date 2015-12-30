@@ -7,10 +7,12 @@ import java.util.Observable;
 public class Snake extends Observable {
     private LinkedList<Point> snake = new LinkedList<>();
     private Food food;
+    private Score score;
     private boolean gameOver = false;
 
-    public Snake(Food food) {
+    public Snake(Food food, Score score) {
         this.food = food;
+        this.score = score;
         snake.add(new Point(2, 0));
         snake.add(new Point(1, 0));
         snake.add(new Point(0, 0));
@@ -61,6 +63,7 @@ public class Snake extends Observable {
                 snake.removeLast();
             } else {
                 food.next(this);
+                score.inc();
             }
         } else {
             gameOver = true;
@@ -136,6 +139,14 @@ public class Snake extends Observable {
      */
     public Food getFood() {
         return food;
+    }
+
+    /**
+     *
+     * @return the score
+     */
+    public Score getScore(){
+        return score;
     }
 }
 
