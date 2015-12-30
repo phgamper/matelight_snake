@@ -27,6 +27,8 @@ public class Snake extends Observable {
         snake.add(new Point(0, 0));
         food.next(this);
         score.reset();
+        setChanged();
+        notifyObservers(0);
     }
 
     /**
@@ -78,15 +80,8 @@ public class Snake extends Observable {
         } else {
             gameOver = true;
         }
-        this.update();
-    }
-
-    /**
-     * Notify observers the snake has moved
-     */
-    public void update() {
-        this.setChanged();
-        this.notifyObservers();
+        setChanged();
+        notifyObservers(score.getPoints());
     }
 
     /**

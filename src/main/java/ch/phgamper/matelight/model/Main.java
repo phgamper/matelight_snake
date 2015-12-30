@@ -8,21 +8,23 @@ import ch.phgamper.matelight.view.View;
 
 public class Main {
 
-    private Matelight mate = new Matelight();
-    private View view;
-    private Snake snake;
-    private Food food = new Food();
-    private Score score = new Score();
-    private SnakeMover mover;
-
     public static void main(String[] args) {
-        new Main();
+        if(args.length < 2){
+            System.out.println("Usage: host port");
+        }
+        String host = args[0];
+        int port = Integer.parseInt(args[1]);
+        new Main(host, port);
     }
 
-    public Main() {
-        snake = new Snake(food, score);
-        mover = new SnakeMover(snake);
-        view = new View(mover);
+    public Main(String host, int port) {
+        // Start Game
+        Matelight mate = new Matelight(host, port);
+        Food food = new Food();
+        Score score = new Score();
+        Snake snake = new Snake(food, score);
+        SnakeMover mover = new SnakeMover(snake);
+        View view = new View(mover);
 
         SnakePanel snakePanel = new SnakePanel(snake);
         FoodPanel foodPanel = new FoodPanel(food);

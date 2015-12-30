@@ -52,9 +52,10 @@ public class View extends JFrame implements Observer, ActionListener, WindowList
     }
 
     @Override
-    public void update(Observable o, Object obj) {
+    public void update(Observable o, Object arg) {
         if (o instanceof Snake) {
-            this.score.setText(" Score: " + ((Snake) o).getScore().getPoints());
+            Integer score = arg instanceof Integer ? (Integer) arg : 0;
+            this.score.setText(" Score: " + score);
         }
     }
 

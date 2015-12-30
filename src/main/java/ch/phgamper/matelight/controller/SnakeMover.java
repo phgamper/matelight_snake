@@ -45,7 +45,6 @@ public class SnakeMover implements Runnable {
                 e.printStackTrace();
             }
         }
-        snake.update();
     }
 
     public void setEvent(KeyEvent e) {
@@ -66,7 +65,6 @@ public class SnakeMover implements Runnable {
                 case KeyEvent.VK_SPACE:
                     event = null;
                     snake.newGame();
-                    snake.update();
                     thread = new Thread(this);
                     thread.start();
                     break;
