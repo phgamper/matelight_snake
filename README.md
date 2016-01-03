@@ -6,6 +6,10 @@ A very simple implementation of the classic game snake to play on the Matelight 
 ![alt text](
 https://raw.githubusercontent.com/phgamper/matelight_snake/master/matelight_snake.jpg "Example")
 
+## Usage
+
+Just download the ```.jar``` and run ```java -jar matelightSnake.jar <host> <port>```
+
 ## License
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
