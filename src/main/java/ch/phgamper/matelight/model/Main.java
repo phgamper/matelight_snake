@@ -9,20 +9,26 @@ import ch.phgamper.matelight.view.View;
 public class Main {
 
     public static void main(String[] args) {
-        if(args.length < 2){
-            System.out.println("Usage: host port");
+        int port = 0;
+        String host = null;
+        if(args.length >= 2){
+            host = args[0];
+            port = Integer.parseInt(args[1]);
         }
-        String host = args[0];
-        int port = Integer.parseInt(args[1]);
         new Main(host, port);
     }
 
     public Main(String host, int port) {
-        Matelight mate = new Matelight(host, port);
+        SnakeMover mover;
         Food food = new Food();
         Score score = new Score();
         Snake snake = new Snake(food, score);
-        SnakeMover mover = new SnakeMover(snake);
+
+        if(Constants.CHEATS){
+            mover = new SnakeMover(snake, new Cheats(snake));
+        }else{
+            mover = new SnakeMover(snake);
+        }
         View view = new View(mover);
 
         SnakePanel snakePanel = new SnakePanel(snake);
@@ -31,8 +37,10 @@ public class Main {
         food.addObserver(foodPanel);
         snake.addObserver(snakePanel);
         snake.addObserver(view);
-        snake.addObserver(mate);
 
+        if(host != null && port > 0) {
+            snake.addObserver(new Matelight(host, port));
+        }
         view.addToBoard(foodPanel);
         view.addToBoard(snakePanel);
     }

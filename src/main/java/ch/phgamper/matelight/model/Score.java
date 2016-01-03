@@ -24,5 +24,13 @@ public class Score {
     public int getPoints() {
         return points;
     }
+
+    /**
+     *
+     * @param points to set
+     */
+    public void setPoints(int points){
+        this.points = points;
+    }
 }
 

@@ -62,9 +62,9 @@ public class SnakePanel extends JPanel implements Observer {
             g.fillArc(x, y, a, b, 0, 360);
         }
 
-        // repaint tonngue
-        int[] x2 = new int[]{(int) Math.floor(head.X * block + 10), (int) Math.floor(head.X * block + 6), (int) Math.floor(head.X * 30), (int) Math.floor(head.X * block + 6), (int) Math.floor(head.X * block + 6)};
-        int[] y2 = new int[]{(int) Math.floor(head.Y * block + 24), (int) Math.floor(head.Y * block + 25), (int) Math.floor(head.Y * 30 + 25), (int) Math.floor(head.Y * 30 + 25), (int) Math.floor(head.Y * block + block) - 1};
+        // repaint tongue
+        int[] x2 = new int[]{(int) Math.floor((head.X + 0.333) * block), (int) Math.floor((head.X + 0.2) * block), (int) Math.floor(head.X * block), (int) Math.floor((head.X + 0.2) * block), (int) Math.floor((head.X  + 0.2) * block)};
+        int[] y2 = new int[]{(int) Math.floor((head.Y + 0.8) * block), (int) Math.floor((head.Y + 0.833) * block), (int) Math.floor((head.Y + 0.833) * block), (int) Math.floor((head.Y + 0.833) * block), (int) Math.floor((head.Y + 1) * block) - 1};
         g.setColor(Color.RED);
         g.drawPolyline(x2, y2, 5);
 

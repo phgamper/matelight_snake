@@ -1,6 +1,5 @@
 package ch.phgamper.matelight.model;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Observable;
 
@@ -9,6 +8,8 @@ public class Snake extends Observable {
     private Food food;
     private Score score;
     private boolean gameOver = false;
+    private boolean walls = Constants.WALLS;
+    private int speed = Constants.SPEED;
 
     public Snake(Food food, Score score) {
         this.food = food;
@@ -27,6 +28,7 @@ public class Snake extends Observable {
         snake.add(new Point(0, 0));
         food.next(this);
         score.reset();
+        speed = Constants.SPEED;
         setChanged();
         notifyObservers(0);
     }
@@ -69,13 +71,22 @@ public class Snake extends Observable {
      * @param next new position of the snake's head
      */
     public void move(Point next){
-        if (!isWall(next) && !isSnake(next)) {
+        if ((!walls || !isWall(next)) && !isSnake(next)){
+            if (isWall(next)) {
+                next.X = next.X < 0 ? Constants.xLen - 1 : next.X;
+                next.X = next.X >= Constants.xLen ? 0 : next.X;
+                next.Y = next.Y < 0 ? Constants.yLen - 1 : next.Y;
+                next.Y = next.Y >= Constants.yLen ? 0 : next.Y;
+            }
             snake.addFirst(next);
             if (!food.isFood(next)) {
                 snake.removeLast();
             } else {
                 food.next(this);
                 score.inc();
+                if(score.getPoints() % Constants.SPEED_MODULO == 0){
+                    speed -= Constants.SPEED_STEP;
+                }
             }
         } else {
             gameOver = true;
@@ -86,17 +97,12 @@ public class Snake extends Observable {
 
     /**
      *
-     * @param head position to check
+     * @param next position to check
      * @return true if the snake is on the given position
      */
-    public boolean isSnake(Point head) {
-        Iterator<Point> it = snake.iterator();
-        // Skip first
-        if(it.hasNext()) {
-            it.next();
-        }
-        while (it.hasNext()) {
-            if (head.equals(it.next())) {
+    public boolean isSnake(Point next) {
+        for (Point p : snake) {
+            if (next.equals(p)) {
                 return true;
             }
         }
@@ -154,5 +160,28 @@ public class Snake extends Observable {
         return score;
     }
 
+    /**
+     * Sets the speed
+     *
+     * @param speed to set
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    /**
+     *
+     * @return speed
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * Set gameOver to true
+     */
+    public void gameOver() {
+        gameOver = true;
+    }
 }
 
