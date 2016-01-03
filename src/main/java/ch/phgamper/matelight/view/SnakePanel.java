@@ -28,7 +28,7 @@ public class SnakePanel extends JPanel implements Observer {
 
     @Override
     public void paint(Graphics g) {
-        int x, i, y, b; int block = Constants.BLOCK_SIZE;
+        int x, i, y, a, b; int block = Constants.BLOCK_SIZE;
         super.paint(g);
 
         // clear snake
@@ -43,21 +43,21 @@ public class SnakePanel extends JPanel implements Observer {
             g.fillArc(p.X * block, p.Y * block, block, block, 0, 360);
         }
 
-        // repaint eye
+        // repaint eyes
         g.setColor(Color.WHITE);
         Point head = snake.getSnake().peek();
         for (i = 0; i < 2; ++i) {
-            x = Math.round(head.X * block + 6 * (1 + i * 2));
-            y = Math.round(head.Y * block + 6);
-            int a = Math.round(6.0f);
+            x = (int) Math.round((head.X + 0.2 * (1 + i * 2)) * block);
+            y = (int) Math.round((head.Y + 0.2) * block);
+            a = Math.round(6.0f);
             b = Math.round(7.0f);
             g.fillArc(x, y, a, b, 0, 360);
         }
         g.setColor(Color.BLACK);
         for (i = 0; i < 2; ++i) {
-            x = (int) Math.round((double) (head.X * block) + 6.0 * (1.1 + (double) (i * 2)));
-            y = (int) Math.round((double) (head.Y * block) + 9.0);
-            int a = Math.round(4.0f);
+            x = (int) Math.round((head.X + 0.2 * (1.1 + i * 2))* block);
+            y = (int) Math.round((head.Y + 0.3) * block);
+            a = Math.round(4.0f);
             b = Math.round(5.0f);
             g.fillArc(x, y, a, b, 0, 360);
         }

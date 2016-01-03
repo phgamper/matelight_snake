@@ -9,6 +9,7 @@ public class Snake extends Observable {
     private Score score;
     private boolean gameOver = false;
     private boolean walls = Constants.WALLS;
+    private boolean god = false;
     private int speed = Constants.SPEED;
 
     public Snake(Food food, Score score) {
@@ -29,6 +30,7 @@ public class Snake extends Observable {
         food.next(this);
         score.reset();
         speed = Constants.SPEED;
+        god = false;
         setChanged();
         notifyObservers(0);
     }
@@ -71,7 +73,7 @@ public class Snake extends Observable {
      * @param next new position of the snake's head
      */
     public void move(Point next){
-        if ((!walls || !isWall(next)) && !isSnake(next)){
+        if (((!walls || !isWall(next)) && !isSnake(next)) || god){
             if (isWall(next)) {
                 next.X = next.X < 0 ? Constants.xLen - 1 : next.X;
                 next.X = next.X >= Constants.xLen ? 0 : next.X;
@@ -182,6 +184,13 @@ public class Snake extends Observable {
      */
     public void gameOver() {
         gameOver = true;
+    }
+
+    /**
+     * Enables the god mode
+     */
+    public void godModeOn() {
+        god = true;
     }
 }
 
