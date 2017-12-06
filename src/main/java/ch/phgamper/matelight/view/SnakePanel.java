@@ -21,9 +21,8 @@ public class SnakePanel extends JPanel implements Observer {
         this.snake = snake;
         this.last = snake.getSnake();
         this.setSize(new Dimension(Constants.BOARD_WIDTH, Constants.BOARD_HEIGHT));
-        this.setBackground(new Color(0, 0, 0, 0));
         this.setFocusable(false);
-        this.setOpaque(true);
+        this.setOpaque(false);
     }
 
     @Override
